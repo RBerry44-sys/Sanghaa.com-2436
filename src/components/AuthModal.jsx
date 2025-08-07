@@ -168,36 +168,35 @@ const AuthModal = ({ isOpen, onClose }) => {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {/* Backdrop */}
+      {isOpen && (
         <motion.div
-          className="absolute inset-0 bg-forest/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={onClose}
-        />
-
-        {/* Modal */}
-        <motion.div
-          className="relative bg-cream rounded-2xl md:rounded-[2rem] p-6 sm:p-8 w-full max-w-sm sm:max-w-md shadow-2xl border border-sage/20 max-h-[90vh] overflow-y-auto"
-          initial={{ scale: 0.9, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          {/* Close Button */}
-          <motion.button
+          {/* Backdrop */}
+          <motion.div
+            className="absolute inset-0 bg-forest/60 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={onClose}
+          />
+
+          {/* Modal */}
+          <motion.div
+            className="relative bg-cream rounded-2xl md:rounded-[2rem] p-6 sm:p-8 w-full max-w-sm sm:max-w-md shadow-2xl border border-sage/20 max-h-[90vh] overflow-y-auto"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            {/* Close Button */}
+            <motion.button
+              onClick={onClose}
             className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 bg-sage/20 rounded-full flex items-center justify-center text-forest hover:bg-sage/30 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -661,8 +660,9 @@ const AuthModal = ({ isOpen, onClose }) => {
               "May your journey be blessed with authentic connections"
             </p>
           </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </AnimatePresence>
   );
 };
